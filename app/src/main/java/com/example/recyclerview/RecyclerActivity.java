@@ -32,8 +32,12 @@ public class RecyclerActivity extends AppCompatActivity {
     }
 
     private List<Data> initData() {
-        return IntStream.rangeClosed(1, 15).boxed().map(
-                i -> new Data("title" + i, "desp" + i, i)
+        return IntStream.rangeClosed(0, 15).boxed().map(
+                i -> {
+                    if(i == 0)
+                        return new Data(Data.TYPE_HEADER,"this is header", null, 0);
+                    return new Data(Data.TYPE_ITEM, "title" + i, "desp" + i, i);
+                }
         ).collect(Collectors.toList());
     }
 }
